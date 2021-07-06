@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Twilio Face Detection Demo</title>
+    <script src="https://sdk.twilio.com/js/video/releases/2.15.1/twilio-video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.0.7/dist/blazeface.min.js"></script>
+<!--
+    <script src="tf-core.min.js"></script>
+    <script src="tf-converter.min.js"></script>
+    <script src="blazeface.min.js"></script>
+    -->
+  </head>
+  <body>
+    <h1>Twilio Face Detection Demo</h1>
+    <p>
+      <input type="checkbox" id="glasses" checked> Groucho glasses
+      <input type="checkbox" id="hat"> Top hat
+    </p>
+    <div id="video"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
