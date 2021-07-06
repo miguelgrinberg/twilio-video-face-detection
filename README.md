@@ -7,5 +7,8 @@ installation, you can start a web server as follows:
 
     python3 -m http.server -d public
 
-If you just want to play with this without installing anything,
+And then open the application by navigating to `http://localhost:8000` on your
+web browser.
+
+If you just want to play with this application without installing anything,
 [click here!](https://miguelgrinberg.github.io/twilio-video-face-detection/public/)

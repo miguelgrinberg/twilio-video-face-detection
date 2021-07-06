@@ -9,7 +9,7 @@ hat.src = 'hat.png';
 
 // for alignment purposes, for each sprite we need to have the pixel location
 // where the right eye (left on the image) goes. The other eye is assumed to
-// be in a simmetrical location on the other half of the image.
+// be in a symmetrical location on the other half of the image.
 const glassesAlign = {x: 80, y: 110};
 const hatAlign = {x: 115, y: 245};
 
