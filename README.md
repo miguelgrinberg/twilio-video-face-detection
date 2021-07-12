@@ -1,6 +1,8 @@
 # twilio-video-face-detection
 Face detection for Twilio Programmable Video
 
+![Face detection example](example.gif)
+
 To run this example, the files in the `public` directory need to be served
 through a web server of your choice. If you have a standard Python 3
 installation, you can start a web server as follows:
