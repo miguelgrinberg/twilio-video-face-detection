@@ -13,12 +13,21 @@ hat.src = 'hat.png';
 const glassesAlign = {x: 80, y: 110};
 const hatAlign = {x: 115, y: 245};
 
+// the frame rate for face detection
+// lower this setting to reduce CPU/GPU usage in the browser
+const fps = 5;
+
 const showLocalVideo = async () => {
+  const frameInterval = 1000 / 5;
+
+  let lastFaceTime = Date.now();
+  let faces = null;
+
   // start a local video track
   const videoTrack = await Twilio.Video.createLocalVideoTrack({
     width: 640,
     height: 480,
-    frameRate: 15 
+    frameRate: 30,
   });
   document.getElementById('video').appendChild(videoTrack.attach());
 
@@ -54,15 +63,22 @@ const showLocalVideo = async () => {
   const model = await blazeface.load();
 
   // create a Twilio video processor
-  const bg = {
+  const videoProcessor = {
     processFrame: async (input, output) => {
       const context = output.getContext('2d');
       if (context) {
         // draw the video image
         context.drawImage(input, 0, 0, input.width, input.height);
 
-        // find the faces
-        const faces = await model.estimateFaces(input, false);
+        const now = Date.now();
+        if (!faces || now > lastFaceTime + frameInterval) {
+          // find the faces
+          const newFaces = await model.estimateFaces(input, false);
+          if (newFaces) {
+            faces = newFaces;
+            lastFaceTime = now;
+          }
+        }
         if (faces.length) {
           // align the canvas with the face
           const eyeDistance = align(context, faces[0]);
@@ -81,7 +97,7 @@ const showLocalVideo = async () => {
   };
 
   // attach the video processor to the local video track
-  videoTrack.addProcessor(bg);
+  videoTrack.addProcessor(videoProcessor);
 }
 
 showLocalVideo();
